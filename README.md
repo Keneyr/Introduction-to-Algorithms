@@ -14,6 +14,7 @@
 
 (以数组来实现)
 
+```
 STACK-EMPTY(S)
 	if top[S] = 0
 		then return TRUE
@@ -28,6 +29,7 @@ POP(S)
 		then error"underflow"
 		else top[S]<-top[S]-1
 			return S[top[S]+1]
+```
 
 有关**队列**的几种操作伪代码如下：
 
@@ -35,6 +37,7 @@ POP(S)
 
 (想起来侯捷老师在讲队列的时候，说队列这里是怎么实现先进先出的呢？其实就是首尾相连)
 
+```
 ENQUEQUE(Q,x)
 	Q[tail[Q]]<-x
 	if tail[Q] = length[Q]
@@ -47,6 +50,7 @@ DEQUEUE(Q)
 		then head[Q]<-1
 		else head[Q]<-head[Q]+1
 	return x
+```
 
 C++中的栈Stack和队列Queue内部是用deque这个容器实现的，所以严格来讲C++中的Stack和Queue应该叫做适配器~
 
@@ -60,6 +64,7 @@ deque容器和vector容器很像，内部都是动态数组~
 
 (链表有头指针)
 
+```
 LIST-SEARCH(L,k)
 	x<-head[L]
 	while x不等于NULL and key[x]不等于k
@@ -79,6 +84,7 @@ LIST-DELETE(L,x)
 		else head[L]<-next[x]
 	if next[x]不等于NULL
 		then prev[next[x]]<-prev[x]
+```
 
 ### 10.3 指针和对象的实现
 
@@ -108,6 +114,7 @@ h:U-->{0,1,...,m-1}
 
 采用链接法解决碰撞后，散列表T上的字典操作就很容易实现。
 
+```
 CHAINED-HASH-INSERT(T,x)
 	insert x at the head of list T[h(key[x])]
 	
@@ -116,6 +123,7 @@ CHAINED-HASH-SEARCH(T,k)
 	
 CHAINED-HASH-DELETE(T,x)
 	delete x from the list T[h(key[x])]
+```
 
 以上伪代码中，x表示元素，key(x)表示关键字~
 
@@ -178,11 +186,13 @@ h(k) = [m(kA mod 1]
 
 中序遍历伪代码：
 
+```
 INORDER-TREE-WALK(x)
 	if x 不等于 NULL
 		then INORDER-TREE-WALK(left[x])
 			 print key[x]
 			 INORDER-TREE-WALK(right[x])
+```
 
 ### 12.2 查询二叉查找树
 
@@ -190,21 +200,24 @@ INORDER-TREE-WALK(x)
 
 给定指向树根的指针和关键字k，过程TREE-SEARCH返回指向包含关键字k的结点的指针；否则，返回NULL
 
+```
 TREE-SEARCH(x,k)
 	if x == null or k = key[x]
 		then return x
 	if k<key[x]
 		then return TREE-SEARCH(left[x],k)
 		else return TREE-SEARCH(right[x],k)
+```
 
 在大多数计算机上，**非递归版本运行得要更快一些**。所以上面的伪代码可以改为：
 
+```
 ITERATIVE-TREE-SEARCH(x,k)
 	while x 不等于 NULL and k 不等于 key[x]
 		do if k<key[x]
 			then x<-left[x]
 			else x<-right[x]
-			
+```			
 
 
 
